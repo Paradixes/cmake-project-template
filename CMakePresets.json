@@ -1,0 +1,142 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "include": [],
+  "configurePresets": [
+    {
+      "name": "common",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "debug",
+      "hidden": true,
+      "inherits": [
+        "common"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "inherits": [
+        "common"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "my-project",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "MY_PROJECT_BUILD_TESTS": "ON",
+        "MY_PROJECT_CLANG_TIDY": "OFF"
+      }
+    },
+    {
+      "name": "my-project-linux",
+      "hidden": true,
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "my-project-macos",
+      "hidden": true,
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "my-project-windows",
+      "hidden": true,
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "my-project-debug",
+      "hidden": true,
+      "inherits": [
+        "debug",
+        "my-project"
+      ]
+    },
+    {
+      "name": "my-project-release",
+      "hidden": true,
+      "inherits": [
+        "release",
+        "my-project"
+      ]
+    },
+    {
+      "name": "my-project-linux-debug",
+      "displayName": "My project Debug",
+      "description": "My project debug profile",
+      "inherits": [
+        "my-project-debug",
+        "my-project-linux"
+      ]
+    },
+    {
+      "name": "my-project-linux-release",
+      "displayName": "My project Release",
+      "description": "My project release profile",
+      "inherits": [
+        "my-project-release",
+        "my-project-linux"
+      ]
+    },
+    {
+      "name": "my-project-macos-debug",
+      "displayName": "My project Debug",
+      "description": "My project debug profile",
+      "inherits": [
+        "my-project-debug",
+        "my-project-macos"
+      ]
+    },
+    {
+      "name": "my-project-macos-release",
+      "displayName": "My project Release",
+      "description": "My project release profile",
+      "inherits": [
+        "my-project-release",
+        "my-project-macos"
+      ]
+    },
+    {
+      "name": "my-project-windows-debug",
+      "displayName": "My project Debug",
+      "description": "My project debug profile",
+      "inherits": [
+        "my-project-debug",
+        "my-project-windows"
+      ]
+    },
+    {
+      "name": "my-project-windows-release",
+      "displayName": "My project Release",
+      "description": "My project release profile",
+      "inherits": [
+        "my-project-release",
+        "my-project-windows"
+      ]
+    }
+  ]
+}
