@@ -52,8 +52,6 @@ endif ()
 add_library(${CUR_TARGET})
 add_library(${CUR_NAMESPACE}::${CUR_TARGET} ALIAS ${CUR_TARGET})
 
-set(CMAKE_CXX_STANDARD 17)
-
 aux_source_directory(src SOURCES)
 
 target_sources(${CUR_TARGET} PRIVATE ${SOURCES})
@@ -61,3 +59,12 @@ target_sources(${CUR_TARGET} PRIVATE ${SOURCES})
 target_include_directories(${CUR_TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(${CUR_TARGET} PRIVATE spdlog::spdlog)
+
+# ---------------------------------------------------------------------------------------
+# Add Tests
+# ---------------------------------------------------------------------------------------
+if (MY_PROJECT_BUILD_TESTS)
+    message(STATUS "Enable testing")
+    enable_testing()
+    add_subdirectory(tests)
+endif ()
